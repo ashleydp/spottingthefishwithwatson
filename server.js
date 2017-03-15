@@ -78,6 +78,7 @@ slapp.command('/playlist', (msg) => {
           text: JSON.stringify(data, null, 2)
         })
 
+/*
         var articles = data.results;
         for (var i = 0; i < articles.length; i++) {
           var title = articles[i].title;
@@ -90,7 +91,7 @@ slapp.command('/playlist', (msg) => {
             }]
           });
         }
-
+*/
       }
     });
 /*

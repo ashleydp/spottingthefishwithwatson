@@ -115,7 +115,7 @@ slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
 
 //Goodnight message
 slapp.message('goodnight', 'mention', (msg) => {
-  msg.say('sweet dreams :crescent_moon: ')
+  msg.say('sweet dreams dude! :crescent_moon: ')
 })
 
 // attach Slapp to express server

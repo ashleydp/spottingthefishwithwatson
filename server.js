@@ -76,12 +76,12 @@ slapp.command('/playlist', (msg) => {
     }, function(err, data) {
       if (err) {
         console.error(err);
-        res.send(err);
+        //res.send(err);
       } else {
 
         // Return the parsed array
         msg.respond({
-          text: data
+          text: 'it works'
         });
       }
     });

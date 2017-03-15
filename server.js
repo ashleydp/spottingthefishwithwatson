@@ -16,13 +16,13 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri : 'http://www.example.com/callback'
 });
 
-var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
-var async = require('async');
-var discovery = new DiscoveryV1({
-  username: process.env.USERNAME || '2c2d8cd4-e4e3-42e6-b702-fc2057db4200',
-  password: process.env.PASSWORD || 'E5F7lHbWIak0',
-  version_date: DiscoveryV1.VERSION_DATE_2016_12_15
-});
+// var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
+// var async = require('async');
+// var discovery = new DiscoveryV1({
+//   username: process.env.USERNAME || '2c2d8cd4-e4e3-42e6-b702-fc2057db4200',
+//   password: process.env.PASSWORD || 'E5F7lHbWIak0',
+//   version_date: DiscoveryV1.VERSION_DATE_2016_12_15
+// });
 
 var slapp = Slapp({
   // Beep Boop sets the SLACK_VERIFY_TOKEN env var

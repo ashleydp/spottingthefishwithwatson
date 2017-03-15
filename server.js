@@ -15,8 +15,11 @@ var slapp = Slapp({
   context: Context()
 })
 
-slapp.route('/playlist', (msg) => {
-  msg.say(':expressionless:')
+
+slapp.command('playlist', /^in/, (msg) => {
+  // `respond` is used for actions or commands and uses the `response_url` provided by the
+  // incoming request from Slack
+  msg.respond(`Glad you are in ${match}!`)
 })
 
 var HELP_TEXT = `

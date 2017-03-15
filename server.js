@@ -91,6 +91,12 @@ slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
   ])
 })
 
+//Goodnight message
+slapp.message('goodnight', ['mention', 'direct_message'], (msg) => {
+  msg.say('sweet dreams dude!! :crescent_moon: ')
+})
+
+
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
   msg.say({
@@ -105,10 +111,6 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
   })
 })
 
-//Goodnight message
-slapp.message('goodnight', 'mention', (msg) => {
-  msg.say('sweet dreams dude!! :crescent_moon: ')
-})
 
 // Catch-all for any other responses not handled above
 slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {

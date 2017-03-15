@@ -25,6 +25,13 @@ I will respond to the following messages:
 \`attachment\` - to see a Slack attachment message.
 `
 
+slapp.command('/playlist', /^in/, (msg) => {
+  // `respond` is used for actions or commands and uses the `response_url` provided by the
+  // incoming request from Slack
+  msg.respond(`Glad you are in ${match}!`)
+})
+
+
 //*********************************************
 // Setup different handlers for messages
 //*********************************************
@@ -130,13 +137,6 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
 
   // attach Slapp to express server
   var server = slapp.attachToExpress(express())
-
-
-  slapp.command('/playlist', /^in/, (msg) => {
-    // `respond` is used for actions or commands and uses the `response_url` provided by the
-    // incoming request from Slack
-    msg.respond(`Glad you are in ${match}!`)
-  })
 
   // start http server
   server.listen(port, (err) => {

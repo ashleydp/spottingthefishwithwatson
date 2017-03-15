@@ -28,11 +28,12 @@ I will respond to the following messages:
 \`attachment\` - to see a Slack attachment message.
 `
 
-slapp.command('/playlist', /.*/, (msg) => {
+slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
   msg.respond(message);
 
 })
+
 
 
 //*********************************************

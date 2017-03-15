@@ -15,27 +15,9 @@ var slapp = Slapp({
   context: Context()
 })
 
-app.route('/playlist')
-  .get(function (req, res) {
-    res.sendStatus(200)
-  })
-  .post(bodyParser.urlencoded({ extended: true }), function (req, res) {
-    if (req.body.token !== VERIFY_TOKEN) {
-      return res.sendStatus(401)
-    }
-
-    var message = 'boopbeep'
-
-    // Handle any help requests
-    if (req.body.text === 'help') {
-      message = "Sorry, I can't offer much help, just here to beep and boop"
-    }
-
-    res.json({
-      response_type: 'ephemeral',
-      text: message
-    })
-  })
+slapp.route('/playlist', (msg) => {
+  msg.say(':expressionless:')
+})
 
 var HELP_TEXT = `
 I will respond to the following messages:

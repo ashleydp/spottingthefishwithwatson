@@ -33,32 +33,25 @@ slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
   // msg.respond(message);
 
-  // Get Elvis' albums
-spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 }, function(err, data) {
-  if (err) {
-    console.error('Something went wrong!');
-  } else {
-    msg.respond(data.body);
-  }
-});
 
-  // msg.respond({
-  //   text: 'Ready to blow this house down! :confetti_ball: ',
-  //   attachments: [{
-  //     text: 'Cat DJ rocking this world..',
-  //     title: 'Meet DJ cat',
-  //     image_url: 'http://media3.giphy.com/media/W8krmZSDxPIfm/giphy-downsized.gif',
-  //     title_link: 'https://beepboophq.com/',
-  //     color: '#7CD197',
-  //     "actions": [
-  //       {
-  //         "name": "playPlaylist",
-  //         "text": "Let's go!",
-  //         "type": "button",
-  //         "value": "play"
-  //       }]
-  //     }]
-  //   })
+
+  msg.respond({
+    text: 'Ready to blow this house down! :confetti_ball: ',
+    attachments: [{
+      text: 'Cat DJ rocking this world..',
+      title: 'Meet DJ cat',
+      image_url: 'http://media3.giphy.com/media/W8krmZSDxPIfm/giphy-downsized.gif',
+      title_link: 'https://beepboophq.com/',
+      color: '#7CD197',
+      "actions": [
+        {
+          "name": "playPlaylist",
+          "text": "Let's go!",
+          "type": "button",
+          "value": "play"
+        }]
+      }]
+    })
 
 })
 

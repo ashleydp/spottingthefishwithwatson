@@ -72,7 +72,7 @@ slapp.command('/playlist', (msg) => {
     discovery.query({
       environment_id: '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
       collection_id: '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
-      query: req.query.text
+      query: message
     }, function(err, data) {
       if (err) {
         console.error(err);

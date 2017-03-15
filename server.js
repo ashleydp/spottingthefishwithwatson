@@ -80,6 +80,8 @@ slapp.command('/playlist', (msg) => {
 
           if (albums[i].images.length > 0) {
             var imageurl = albums[i].images[1].url;
+          } else {
+            imageurl = null;
           }
 
           msg.respond({

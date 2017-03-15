@@ -118,24 +118,17 @@ slapp.command('/playlist', (msg) => {
           if (albums[i].images.length > 0) {
             var imageurl = albums[i].images[1].url;
           } else {
-            imageurl = "http://gph.is/2cCr3Ma";
+            imageurl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuP5_wqv9qQziKxUNtU74UgSwyWWH7K7GFNPuQY2s9aWxjUXVq";
           }
 
           msg.respond({
-            // text: 'This is what we found for your search! :confetti_ball: ',
+            text: 'This is what we found for your search! :confetti_ball: ',
             attachments: [{
               text: artist,
               title: artist,
               image_url: imageurl,
               title_link: url,
-              color: '#7CD197',
-              "actions": [
-                {
-                  "name": "playPlaylist",
-                  "text": "Play",
-                  "type": "button",
-                  "value": "play"
-                }]
+              color: '#7CD197'
               }]
             })
 

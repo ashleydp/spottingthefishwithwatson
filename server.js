@@ -36,48 +36,48 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
-  .message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg
-      .say(`${text}, how are you?`)
-      // sends next event from user to this route, passing along state
-      .route('how-are-you', { greeting: text })
-  })
-  .route('how-are-you', (msg, state) => {
-    var text = (msg.body.event && msg.body.event.text) || ''
+.message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
+  msg
+  .say(`${text}, how are you?`)
+  // sends next event from user to this route, passing along state
+  .route('how-are-you', { greeting: text })
+})
+.route('how-are-you', (msg, state) => {
+  var text = (msg.body.event && msg.body.event.text) || ''
 
-    // user may not have typed text as their next action, ask again and re-route
-    if (!text) {
-      return msg
-        .say("Whoops, I'm still waiting to hear how you're doing.")
-        .say('How are you?')
-        .route('how-are-you', state)
-    }
+  // user may not have typed text as their next action, ask again and re-route
+  if (!text) {
+    return msg
+    .say("Whoops, I'm still waiting to hear how you're doing.")
+    .say('How are you?')
+    .route('how-are-you', state)
+  }
 
-    // add their response to state
-    state.status = text
+  // add their response to state
+  state.status = text
 
-    msg
-      .say(`Ok then. What's your favorite color?`)
-      .route('color', state)
-  })
-  .route('color', (msg, state) => {
-    var text = (msg.body.event && msg.body.event.text) || ''
+  msg
+  .say(`Ok then. What's your favorite color?`)
+  .route('color', state)
+})
+.route('color', (msg, state) => {
+  var text = (msg.body.event && msg.body.event.text) || ''
 
-    // user may not have typed text as their next action, ask again and re-route
-    if (!text) {
-      return msg
-        .say("I'm eagerly awaiting to hear your favorite color.")
-        .route('color', state)
-    }
+  // user may not have typed text as their next action, ask again and re-route
+  if (!text) {
+    return msg
+    .say("I'm eagerly awaiting to hear your favorite color.")
+    .route('color', state)
+  }
 
-    // add their response to state
-    state.color = text
+  // add their response to state
+  state.color = text
 
-    msg
-      .say('Thanks for sharing.')
-      .say(`Here's what you've told me so far: \`\`\`${JSON.stringify(state)}\`\`\``)
-    // At this point, since we don't route anywhere, the "conversation" is over
-  })
+  msg
+  .say('Thanks for sharing.')
+  .say(`Here's what you've told me so far: \`\`\`${JSON.stringify(state)}\`\`\``)
+  // At this point, since we don't route anywhere, the "conversation" is over
+})
 
 // Can use a regex as well
 slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
@@ -106,30 +106,37 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
       title: 'Slapp Library - Open Source',
       image_url: 'https://storage.googleapis.com/beepboophq/_assets/bot-1.22f6fb.png',
       title_link: 'https://beepboophq.com/',
-      color: '#7CD197'
-    }]
+      color: '#7CD197',
+      "actions": [
+        {
+          "name": "playPlaylist",
+          "text": "Let's get the party started!",
+          "type": "button",
+          "value": "play"
+        }]
+      }]
+    })
   })
-})
 
 
-// Catch-all for any other responses not handled above
-slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
-  // respond only 40% of the time
-  if (Math.random() < 0.4) {
-    msg.say([':wave:', ':pray:', ':raised_hands:'])
-  }
-})
+  // Catch-all for any other responses not handled above
+  slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
+    // respond only 40% of the time
+    if (Math.random() < 0.4) {
+      msg.say([':wave:', ':pray:', ':raised_hands:'])
+    }
+  })
 
 
 
-// attach Slapp to express server
-var server = slapp.attachToExpress(express())
+  // attach Slapp to express server
+  var server = slapp.attachToExpress(express())
 
-// start http server
-server.listen(port, (err) => {
-  if (err) {
-    return console.error(err)
-  }
+  // start http server
+  server.listen(port, (err) => {
+    if (err) {
+      return console.error(err)
+    }
 
-  console.log(`Listening on port ${port}`)
-})
+    console.log(`Listening on port ${port}`)
+  })

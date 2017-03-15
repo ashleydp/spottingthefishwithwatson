@@ -30,7 +30,24 @@ I will respond to the following messages:
 
 slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
-  msg.respond(message);
+  // msg.respond(message);
+  msg.respond({
+    text: 'Ready to blow this house down! :confetti_ball: ',
+    attachments: [{
+      text: 'Cat DJ rocking this world..',
+      title: 'Meet DJ cat',
+      image_url: 'http://media3.giphy.com/media/W8krmZSDxPIfm/giphy-downsized.gif',
+      title_link: 'https://beepboophq.com/',
+      color: '#7CD197',
+      "actions": [
+        {
+          "name": "playPlaylist",
+          "text": "Let's go!",
+          "type": "button",
+          "value": "play"
+        }]
+      }]
+    })
 
 })
 
@@ -110,11 +127,11 @@ slapp.message('goodnight', ['mention', 'direct_message'], (msg) => {
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
   msg.say({
-    text: 'Check out this amazing attachment! :confetti_ball: ',
+    text: 'Ready to blow this house down! :confetti_ball: ',
     attachments: [{
-      text: 'Slapp is a robust open source library that sits on top of the Slack APIs',
-      title: 'Slapp Library - Open Source',
-      image_url: 'https://storage.googleapis.com/beepboophq/_assets/bot-1.22f6fb.png',
+      text: 'Cat DJ rocking this world..',
+      title: 'Meet DJ cat',
+      image_url: 'http://media3.giphy.com/media/W8krmZSDxPIfm/giphy-downsized.gif',
       title_link: 'https://beepboophq.com/',
       color: '#7CD197',
       "actions": [

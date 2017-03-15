@@ -105,6 +105,11 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
   })
 })
 
+//Goodnight message
+slapp.message('goodnight', 'mention', (msg) => {
+  msg.say('sweet dreams dude!! :crescent_moon: ')
+})
+
 // Catch-all for any other responses not handled above
 slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
   // respond only 40% of the time
@@ -113,10 +118,7 @@ slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
   }
 })
 
-//Goodnight message
-slapp.message('goodnight', 'mention', (msg) => {
-  msg.say('sweet dreams dude!! :crescent_moon: ')
-})
+
 
 // attach Slapp to express server
 var server = slapp.attachToExpress(express())

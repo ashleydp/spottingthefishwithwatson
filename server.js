@@ -15,6 +15,9 @@ var slapp = Slapp({
   context: Context()
 })
 
+// attach Slapp to express server
+var server = slapp.attachToExpress(express())
+
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -135,8 +138,7 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
 
 
 
-  // attach Slapp to express server
-  var server = slapp.attachToExpress(express())
+
 
   // start http server
   server.listen(port, (err) => {

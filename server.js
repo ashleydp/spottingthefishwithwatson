@@ -74,6 +74,11 @@ slapp.command('/playlist', (msg) => {
         console.error('Something went wrong!');
       } else {
 
+        msg.respond({
+          text: 'it works'
+        })
+
+        /*
         var articles = data.results;
         for (var i = 0; i < albums.length; i++) {
           var title = articles[i].title;
@@ -86,6 +91,7 @@ slapp.command('/playlist', (msg) => {
             }]
           });
         }
+        */
       }
     });
 

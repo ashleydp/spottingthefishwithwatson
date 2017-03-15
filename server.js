@@ -75,7 +75,7 @@ slapp.command('/playlist', (msg) => {
       } else {
 
         msg.respond({
-          text: 'it works'
+          text: data
         })
 
         /*

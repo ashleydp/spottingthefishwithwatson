@@ -18,7 +18,7 @@ var slapp = Slapp({
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
-\`hi\` - to demonstrate a conversation that tracks state.
+\`playlist\` - to demonstrate a conversation that tracks playlist request.
 \`thanks\` - to demonstrate a simple response.
 \`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
 \`attachment\` - to see a Slack attachment message.
@@ -53,24 +53,24 @@ slapp
   }
 
   // add their response to state
-  state.status = text
+  state.artist = text
 
   msg
-  .say(`Ok then. Any specific album?`)
-  .route('color', state)
+  .say(`Ok then. Any specific year?`)
+  .route('year', state)
 })
-.route('color', (msg, state) => {
+.route('year', (msg, state) => {
   var text = (msg.body.event && msg.body.event.text) || ''
 
   // user may not have typed text as their next action, ask again and re-route
   if (!text) {
     return msg
-    .say("I'm eagerly awaiting to hear if there is a specific album.")
-    .route('color', state)
+    .say("I'm eagerly awaiting to hear if there is a specific year.")
+    .route('year', state)
   }
 
   // add their response to state
-  state.color = text
+  state.year = text
 
   msg
   .say('Thanks for sharing.')

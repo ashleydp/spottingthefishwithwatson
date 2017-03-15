@@ -40,7 +40,7 @@ slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
   msg.respond(message);
 
-  if (message == 'dj cat') {
+  if (message == 'dj cat' || message == 'cat dj') {
     msg.respond({
       text: 'Ready to blow this house down! :confetti_ball: ',
       attachments: [{

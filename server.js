@@ -15,10 +15,11 @@ var slapp = Slapp({
   context: Context()
 })
 
+
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
-\`playlist\` - to demonstrate a conversation that tracks playlist request.
+\`hi\` - to demonstrate a conversation that tracks state.
 \`thanks\` - to demonstrate a simple response.
 \`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
 \`attachment\` - to see a Slack attachment message.
@@ -35,9 +36,9 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
-.message('^(hi|hello|hey|playlist)$', ['direct_mention', 'direct_message'], (msg, text) => {
+.message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
   msg
-  .say(`${text}, what artist would you like to listen to?`)
+  .say(`${text}, how are you?`)
   // sends next event from user to this route, passing along state
   .route('how-are-you', { greeting: text })
 })
@@ -47,30 +48,30 @@ slapp
   // user may not have typed text as their next action, ask again and re-route
   if (!text) {
     return msg
-    .say("Whoops, I'm still waiting to hear from you.")
-    .say('What artitst would you like to listen to?')
+    .say("Whoops, I'm still waiting to hear how you're doing.")
+    .say('How are you?')
     .route('how-are-you', state)
   }
 
   // add their response to state
-  state.artist = text
+  state.status = text
 
   msg
-  .say(`Ok then. Any specific year?`)
-  .route('year', state)
+  .say(`Ok then. What's your favorite color?`)
+  .route('color', state)
 })
-.route('year', (msg, state) => {
+.route('color', (msg, state) => {
   var text = (msg.body.event && msg.body.event.text) || ''
 
   // user may not have typed text as their next action, ask again and re-route
   if (!text) {
     return msg
-    .say("I'm eagerly awaiting to hear if there is a specific year.")
-    .route('year', state)
+    .say("I'm eagerly awaiting to hear your favorite color.")
+    .route('color', state)
   }
 
   // add their response to state
-  state.year = text
+  state.color = text
 
   msg
   .say('Thanks for sharing.')
@@ -129,6 +130,13 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
 
   // attach Slapp to express server
   var server = slapp.attachToExpress(express())
+
+
+  slapp.command('/playlist', /^in/, (msg) => {
+    // `respond` is used for actions or commands and uses the `response_url` provided by the
+    // incoming request from Slack
+    msg.respond(`Glad you are in ${match}!`)
+  })
 
   // start http server
   server.listen(port, (err) => {

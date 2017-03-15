@@ -69,20 +69,23 @@ slapp.command('/playlist', (msg) => {
       })
     }
 
-    discovery.query({
-      environment_id: '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
-      collection_id: '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
-      query: message
-    }, function(err, data) {
+    discovery.query({ environment_id: '057a6f5b-d16b-4465-b163-dfe7e674e8ac', collection_id: '219f9473-11a9-4b78-b68b-9c9aa3e296b3', query: 'beyonce' }, function(err, data) {
       if (err) {
-        console.error(err);
-        //res.send(err);
+        console.error('Something went wrong!');
       } else {
 
-        // Return the parsed array
-        msg.respond({
-          text: 'it works'
-        });
+        var articles = data.results;
+        for (var i = 0; i < albums.length; i++) {
+          var title = articles[i].title;
+          var url = articles[i].url;
+
+          msg.respond({
+            text: 'it works',
+            attachments: [{
+              text: title + ' ' + url;
+            }]
+          });
+        }
       }
     });
 

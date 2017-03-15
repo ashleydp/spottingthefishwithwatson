@@ -30,7 +30,7 @@ I will respond to the following messages:
 
 slapp.command('/playlist', /.*/, (msg) => {
   var message = msg.body.text;
-  msg.say(message);
+  msg.respond(message);
 
 })
 

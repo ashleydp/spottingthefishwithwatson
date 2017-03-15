@@ -96,7 +96,7 @@ slapp.message('goodnight', ['mention', 'direct_message'], (msg) => {
   msg.say('sweet dreams dude!! :crescent_moon: ')
 })
 
-slapp.command('/playlist', /^in/, (msg) => {
+slapp.command('/test', /^in/, (msg) => {
   // `respond` is used for actions or commands and uses the `response_url` provided by the
   // incoming request from Slack
   msg.respond(`Here is your playlist for ${match}!`)

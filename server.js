@@ -16,13 +16,13 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri : 'http://www.example.com/callback'
 });
 
-// var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
-// var async = require('async');
-// var discovery = new DiscoveryV1({
-//   username: process.env.USERNAME || '2c2d8cd4-e4e3-42e6-b702-fc2057db4200',
-//   password: process.env.PASSWORD || 'E5F7lHbWIak0',
-//   version_date: DiscoveryV1.VERSION_DATE_2016_12_15
-// });
+var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
+//var async = require('async');
+var discovery = new DiscoveryV1({
+  username: '2c2d8cd4-e4e3-42e6-b702-fc2057db4200',
+  password: 'E5F7lHbWIak0',
+  version_date: DiscoveryV1.VERSION_DATE_2016_12_15
+});
 
 var slapp = Slapp({
   // Beep Boop sets the SLACK_VERIFY_TOKEN env var
@@ -43,12 +43,6 @@ I will respond to the following messages:
 \`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
 \`attachment\` - to see a Slack attachment message.
 `
-
-function getNews(topic) {
-  request('http://6450dab1.ngrok.io/discovery?text=beyonce', function(error, response, body) {
-    return body
-  })
-}
 
 
 slapp.command('/playlist', (msg) => {
@@ -75,33 +69,22 @@ slapp.command('/playlist', (msg) => {
       })
     }
 
+    discovery.query({
+      environment_id: '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
+      collection_id: '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
+      query: req.query.text
+    }, function(err, data) {
+      if (err) {
+        console.error(err);
+        res.send(err);
+      } else {
 
-    // var articles = [];
-    //
-    // discovery.query({
-    //   environment_id: process.env.ENVIRONMENT_ID || '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
-    //   collection_id: process.env.COLLECTION_ID '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
-    //   query: req.query.text
-    // }, function(err, data) {
-    //   if (err) {
-    //     console.error(err);
-    //     res.send(err);
-    //   } else {
-    //
-    //     // Loop through each result
-    //     async.each(data.results, function(item, callback) {
-    //       articles.push({
-    //         title: item.title,
-    //         url: item.url
-    //       });
-    //     });
-    //
-    //     // Return the parsed array
-    //     msg.respond({
-    //       text: articles
-    //     });
-    //   }
-    // });
+        // Return the parsed array
+        msg.respond({
+          text: data
+        });
+      }
+    });
 
 
     spotifyApi.searchArtists(message, { limit: 10, offset: 20 }, function(err, data) {
@@ -136,10 +119,6 @@ slapp.command('/playlist', (msg) => {
           }
         }
       });
-
-      msg.respond({
-        text: getNews(message)
-      })
 
     })
 

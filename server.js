@@ -15,13 +15,6 @@ var slapp = Slapp({
   context: Context()
 })
 
-
-slapp.command('playlist', /^in/, (msg) => {
-  // `respond` is used for actions or commands and uses the `response_url` provided by the
-  // incoming request from Slack
-  msg.respond(`Glad you are in ${match}!`)
-})
-
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
@@ -42,9 +35,9 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
-.message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
+.message('^(hi|hello|hey|playlist)$', ['direct_mention', 'direct_message'], (msg, text) => {
   msg
-  .say(`${text}, how are you?`)
+  .say(`${text}, what artist would you like to listen to?`)
   // sends next event from user to this route, passing along state
   .route('how-are-you', { greeting: text })
 })
@@ -54,8 +47,8 @@ slapp
   // user may not have typed text as their next action, ask again and re-route
   if (!text) {
     return msg
-    .say("Whoops, I'm still waiting to hear how you're doing.")
-    .say('How are you?')
+    .say("Whoops, I'm still waiting to hear from you.")
+    .say('What artitst would you like to listen to?')
     .route('how-are-you', state)
   }
 
@@ -63,7 +56,7 @@ slapp
   state.status = text
 
   msg
-  .say(`Ok then. What's your favorite color?`)
+  .say(`Ok then. Any specific album?`)
   .route('color', state)
 })
 .route('color', (msg, state) => {
@@ -72,7 +65,7 @@ slapp
   // user may not have typed text as their next action, ask again and re-route
   if (!text) {
     return msg
-    .say("I'm eagerly awaiting to hear your favorite color.")
+    .say("I'm eagerly awaiting to hear if there is a specific album.")
     .route('color', state)
   }
 

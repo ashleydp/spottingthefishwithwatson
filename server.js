@@ -38,7 +38,7 @@ function getNews(topic) {
 
 slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
-  // msg.respond(message);
+  msg.respond(message);
 
   if (message == 'dj cat') {
     msg.respond({

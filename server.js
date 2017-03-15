@@ -25,10 +25,10 @@ I will respond to the following messages:
 \`attachment\` - to see a Slack attachment message.
 `
 
-slapp.command('/playlist', /^in/, (msg) => {
-  // `respond` is used for actions or commands and uses the `response_url` provided by the
-  // incoming request from Slack
-  msg.respond(`Glad you are in ${match}!`)
+slapp.command('/playlist', /.*/, (msg) => {
+  var message = msg.body.text;
+  msg.say(message);
+
 })
 
 

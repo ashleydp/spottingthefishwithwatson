@@ -4,7 +4,7 @@ const express = require('express')
 const Slapp = require('slapp')
 const ConvoStore = require('slapp-convo-beepboop')
 const Context = require('slapp-context-beepboop')
-const request = require('request')
+const http = require('http')
 
 // use `PORT` env var on Beep Boop - default to 3000 locally
 var port = process.env.PORT || 3000
@@ -30,15 +30,9 @@ I will respond to the following messages:
 \`attachment\` - to see a Slack attachment message.
 `
 
-function getNews(topic) {
-  request('http://6450dab1.ngrok.io/discovery?text=beyonce', function(error, response, body) {
-    return body
-  })
-}
-
 slapp.command('/playlist', (msg) => {
   var message = msg.body.text;
-  msg.respond(message);
+  //msg.respond(message);
 
   if (message == 'dj cat' || message == 'cat dj') {
     msg.respond({
@@ -60,8 +54,8 @@ slapp.command('/playlist', (msg) => {
       })
   }
 
-  msg.respond({
-    text: getNews(message)
+  http.get('http://6450dab1.ngrok.io/discovery?text=beyonce', function(data) {
+    msg.respond(data)
   })
 
 })

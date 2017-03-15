@@ -15,6 +15,12 @@ var slapp = Slapp({
   context: Context()
 })
 
+slapp.command('/playlist', /^in/, (msg) => {
+  // `respond` is used for actions or commands and uses the `response_url` provided by the
+  // incoming request from Slack
+  msg.respond(`Here is your playlist for ${match}!`)
+})
+
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -95,13 +101,6 @@ slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
 slapp.message('goodnight', ['mention', 'direct_message'], (msg) => {
   msg.say('sweet dreams dude!! :crescent_moon: ')
 })
-
-slapp.command('/test', /^in/, (msg) => {
-  // `respond` is used for actions or commands and uses the `response_url` provided by the
-  // incoming request from Slack
-  msg.respond(`Here is your playlist for ${match}!`)
-})
-
 
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {

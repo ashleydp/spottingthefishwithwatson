@@ -74,33 +74,33 @@ slapp.command('/playlist', (msg) => {
       })
     }
 
-    discovery.query({
-      environment_id: process.env.ENVIRONMENT_ID || '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
-      collection_id: process.env.COLLECTION_ID '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
-      query: req.query.text
-    }, function(err, data) {
-      if (err) {
-        console.error(err);
-        res.send(err);
-      } else {
-        var articles = data.results;
-        msg.respond({
-          text: articles
-        });
-        // Loop through each result
-        /*
-        async.each(data.results, function(item, callback) {
-          articles.push({
-            title: item.title,
-            url: item.url
-          });
-        });
-        */
-
-        // Return the parsed array
-
-      }
-    });
+    // discovery.query({
+    //   environment_id: process.env.ENVIRONMENT_ID || '057a6f5b-d16b-4465-b163-dfe7e674e8ac',
+    //   collection_id: process.env.COLLECTION_ID '219f9473-11a9-4b78-b68b-9c9aa3e296b3',
+    //   query: req.query.text
+    // }, function(err, data) {
+    //   if (err) {
+    //     console.error(err);
+    //     res.send(err);
+    //   } else {
+    //     var articles = data.results;
+    //     msg.respond({
+    //       text: articles
+    //     });
+    //     // Loop through each result
+    //     /*
+    //     async.each(data.results, function(item, callback) {
+    //       articles.push({
+    //         title: item.title,
+    //         url: item.url
+    //       });
+    //     });
+    //     */
+    //
+    //     // Return the parsed array
+    //
+    //   }
+    // });
 
     spotifyApi.searchArtists(message, { limit: 10, offset: 20 }, function(err, data) {
       if (err) {

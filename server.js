@@ -87,7 +87,7 @@ slapp.command('/playlist', (msg) => {
           msg.respond({
             text: item.title,
             attachments: [{
-              title_url: item.url
+              title_link: item.url
             }]
           })
           /*

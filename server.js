@@ -92,38 +92,38 @@ slapp.command('/playlist', (msg) => {
       }
     });
 
-    spotifyApi.searchArtists(message, { limit: 10, offset: 20 }, function(err, data) {
-      if (err) {
-        console.error('Something went wrong!');
-      } else {
-
-        var albums = data.body.artists.items;
-        for(var i = 0; i < albums.length; i++) {
-
-          var artist = albums[i].name;
-          var url = albums[i].external_urls.spotify;
-
-          if (albums[i].images.length > 0) {
-            var imageurl = albums[i].images[1].url;
-          } else {
-            imageurl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuP5_wqv9qQziKxUNtU74UgSwyWWH7K7GFNPuQY2s9aWxjUXVq";
-          }
-
-          msg.respond({
-            text: 'This is what we found for your search! :confetti_ball: ',
-            attachments: [{
-              text: artist,
-              title: artist,
-              image_url: imageurl,
-              title_link: url,
-              color: '#7CD197'
-              }]
-            })
-
-
-          }
-        }
-      });
+    // spotifyApi.searchArtists(message, { limit: 10, offset: 20 }, function(err, data) {
+    //   if (err) {
+    //     console.error('Something went wrong!');
+    //   } else {
+    //
+    //     var albums = data.body.artists.items;
+    //     for(var i = 0; i < albums.length; i++) {
+    //
+    //       var artist = albums[i].name;
+    //       var url = albums[i].external_urls.spotify;
+    //
+    //       if (albums[i].images.length > 0) {
+    //         var imageurl = albums[i].images[1].url;
+    //       } else {
+    //         imageurl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuP5_wqv9qQziKxUNtU74UgSwyWWH7K7GFNPuQY2s9aWxjUXVq";
+    //       }
+    //
+    //       msg.respond({
+    //         text: 'This is what we found for your search! :confetti_ball: ',
+    //         attachments: [{
+    //           text: artist,
+    //           title: artist,
+    //           image_url: imageurl,
+    //           title_link: url,
+    //           color: '#7CD197'
+    //           }]
+    //         })
+    //
+    //
+    //       }
+    //     }
+    //   });
 
     })
 

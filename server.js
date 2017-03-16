@@ -77,12 +77,11 @@ slapp.command('/playlist', (msg) => {
       } else {
 
         msg.respond({
-          text: 'Hey there! Here are the latest headlines for ' + message '.'
+          text: 'Hey there! Here are the latest headlines for ' + message + '.'
         })
 
         async.each(data.results, function(item, callback) {
           msg.respond({
-            text: item.title,
             attachments: [{
               title: item.title,
               title_link: item.url

@@ -106,7 +106,7 @@ slapp.command('/playlist', (msg) => {
 */
       }
     });
-/*
+
     spotifyApi.searchArtists(message, { limit: 10, offset: 20 }, function(err, data) {
       if (err) {
         console.error('Something went wrong!');
@@ -139,7 +139,7 @@ slapp.command('/playlist', (msg) => {
           }
         }
       });
-*/
+
     })
 
 

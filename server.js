@@ -17,7 +17,7 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
-//var async = require('async');
+var async = require('async');
 var discovery = new DiscoveryV1({
   username: '2c2d8cd4-e4e3-42e6-b702-fc2057db4200',
   password: 'E5F7lHbWIak0',
@@ -70,13 +70,33 @@ slapp.command('/playlist', (msg) => {
     }
 
     discovery.query({ environment_id: '057a6f5b-d16b-4465-b163-dfe7e674e8ac', collection_id: '219f9473-11a9-4b78-b68b-9c9aa3e296b3', query: message }, function(err, data) {
+      var articles = [];
+
       if (err) {
         console.error('Something went wrong!');
       } else {
-
+/*
         msg.respond({
           text: JSON.stringify(data, null, 2)
         })
+
+
+*/
+
+        async.each(data.results, function(item, callback) {
+          msg.respond({
+            text: item.title,
+            attachments: [{
+              title_url: item.url
+            }]
+          })
+          /*
+          articles.push({
+            title: item.title,
+            url: item.url
+          });
+          */
+        });
 
 /*
         var articles = data.results;

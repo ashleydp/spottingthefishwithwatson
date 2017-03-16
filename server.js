@@ -75,27 +75,18 @@ slapp.command('/playlist', (msg) => {
       if (err) {
         console.error('Something went wrong!');
       } else {
-/*
+
         msg.respond({
-          text: JSON.stringify(data, null, 2)
+          text: 'Hey there! Here are the latest headlines for ' + message '.'
         })
-
-
-*/
 
         async.each(data.results, function(item, callback) {
           msg.respond({
-            text: item.title,
             attachments: [{
+              title: item.title
               title_link: item.url
             }]
           })
-          /*
-          articles.push({
-            title: item.title,
-            url: item.url
-          });
-          */
         });
 
 /*

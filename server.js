@@ -117,6 +117,7 @@ slapp.command('/playlist', (msg) => {
               image_url: imageurl,
               title_link: url,
               color: '#7CD197'
+              }]
             })
 
 

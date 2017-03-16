@@ -129,8 +129,7 @@ slapp.command('/playlist', (msg) => {
                     "text": "Remove playlist",
                     "type": "button",
                     "value": "maze"
-                }
-              }]
+                }]
             })
 
 

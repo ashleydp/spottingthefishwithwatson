@@ -82,9 +82,8 @@ slapp.command('/playlist', (msg) => {
 
         async.each(data.results, function(item, callback) {
           msg.respond({
-            text: item.title,
             attachments: [{
-              title: item.title
+              title: item.title,
               title_link: item.url
             }]
           })

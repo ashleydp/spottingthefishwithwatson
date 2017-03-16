@@ -117,7 +117,7 @@ slapp.command('/playlist', (msg) => {
               image_url: imageurl,
               title_link: url,
               color: '#7CD197',
-              "actions": [
+              actions: [
                 {
                     "name": "game",
                     "text": "Add playlist",
@@ -129,7 +129,7 @@ slapp.command('/playlist', (msg) => {
                     "text": "Remove playlist",
                     "type": "button",
                     "value": "maze"
-                },
+                }
               }]
             })
 
